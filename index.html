@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WeatherNow — Real-Time Weather Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <!-- jQuery via CDN (Task 3 requirement) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+
+  <!-- Error Banner -->
+  <div id="error-banner" class="error-banner hidden">
+    <span id="error-message">Something went wrong.</span>
+    <button id="retry-btn" class="retry-btn">↺ Retry</button>
+    <button id="close-error-btn" class="close-error-btn">✕</button>
+  </div>
+
+  <!-- Header / Search -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">⛅</span>
+        <span class="logo-text">WeatherNow</span>
+      </div>
+      <div class="search-wrapper">
+        <div class="search-bar">
+          <input
+            type="text"
+            id="search-input"
+            class="search-input"
+            placeholder="Search a city…"
+            autocomplete="off"
+            aria-label="Search city"
+          />
+          <button id="search-btn" class="search-btn" aria-label="Search">
+            <span class="search-icon">⌕</span>
+            <span>Search</span>
+          </button>
+        </div>
+        <p id="validation-msg" class="validation-msg hidden">Please enter at least 2 characters.</p>
+      </div>
+    </div>
+
+    <!-- Recent Searches (Bonus) -->
+    <div id="recent-searches" class="recent-searches hidden">
+      <span class="recent-label">Recent:</span>
+      <div id="chips-container" class="chips-container"></div>
+    </div>
+  </header>
+
+  <!-- Main Dashboard -->
+  <main class="dashboard">
+
+    <!-- Current Weather Card -->
+    <section class="current-weather-card" id="current-card">
+      <div class="card-bg-glow"></div>
+
+      <div class="current-top">
+        <div class="city-info">
+          <h1 class="city-name skeleton skeleton-text" id="city-name">City Name</h1>
+          <p class="local-time skeleton skeleton-sm" id="local-time">--:-- --</p>
+        </div>
+        <!-- Celsius/Fahrenheit toggle (Bonus) -->
+        <div class="unit-toggle" id="unit-toggle">
+          <button class="unit-btn active" data-unit="C">°C</button>
+          <button class="unit-btn" data-unit="F">°F</button>
+        </div>
+      </div>
+
+      <div class="current-main">
+        <div class="weather-icon-big skeleton skeleton-icon" id="weather-icon-big">🌤️</div>
+        <div class="temp-block">
+          <span class="temperature skeleton skeleton-temp" id="temperature">--</span>
+          <span class="temp-unit-display" id="temp-unit-display">°C</span>
+        </div>
+      </div>
+
+      <p class="weather-desc skeleton skeleton-text" id="weather-desc">Loading weather…</p>
+
+      <div class="current-stats">
+        <div class="stat-item">
+          <span class="stat-icon">💧</span>
+          <div>
+            <span class="stat-label">Humidity</span>
+            <span class="stat-value skeleton skeleton-sm" id="humidity">--%</span>
+          </div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">💨</span>
+          <div>
+            <span class="stat-label">Wind</span>
+            <span class="stat-value skeleton skeleton-sm" id="wind-speed">-- km/h</span>
+          </div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">🌡️</span>
+          <div>
+            <span class="stat-label">Feels Like</span>
+            <span class="stat-value skeleton skeleton-sm" id="feels-like">--°</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7-Day Forecast Row -->
+    <section class="forecast-section">
+      <h2 class="section-title">7-Day Forecast</h2>
+      <div class="forecast-row" id="forecast-row">
+        <!-- Rendered by JS -->
+        <div class="forecast-card skeleton-card">
+          <div class="fc-day skeleton skeleton-sm"></div>
+          <div class="fc-icon skeleton skeleton-icon-sm"></div>
+          <div class="fc-temps">
+            <span class="skeleton skeleton-sm"></span>
+            <span class="skeleton skeleton-sm"></span>
+          </div>
+        </div>
+        <div class="forecast-card skeleton-card">
+          <div class="fc-day skeleton skeleton-sm"></div>
+          <div class="fc-icon skeleton skeleton-icon-sm"></div>
+          <div class="fc-temps">
+            <span class="skeleton skeleton-sm"></span>
+            <span class="skeleton skeleton-sm"></span>
+          </div>
+        </div>
+        <div class="forecast-card skeleton-card">
+          <div class="fc-day skeleton skeleton-sm"></div>
+          <div class="fc-icon skeleton skeleton-icon-sm"></div>
+          <div class="fc-temps">
+            <span class="skeleton skeleton-sm"></span>
+            <span class="skeleton skeleton-sm"></span>
+          </div>
+        </div>
+        <div class="forecast-card skeleton-card">
+          <div class="fc-day skeleton skeleton-sm"></div>
+          <div class="fc-icon skeleton skeleton-icon-sm"></div>
+          <div class="fc-temps">
+            <span class="skeleton skeleton-sm"></span>
+            <span class="skeleton skeleton-sm"></span>
+          </div>
+        </div>
+        <div class="forecast-card skeleton-card">
+          <div class="fc-day skeleton skeleton-sm"></div>
+          <div class="fc-icon skeleton skeleton-icon-sm"></div>
+          <div class="fc-temps">
+            <span class="skeleton skeleton-sm"></span>
+            <span class="skeleton skeleton-sm"></span>
+          </div>
+        </div>
+        <div class="forecast-card skeleton-card">
+          <div class="fc-day skeleton skeleton-sm"></div>
+          <div class="fc-icon skeleton skeleton-icon-sm"></div>
+          <div class="fc-temps">
+            <span class="skeleton skeleton-sm"></span>
+            <span class="skeleton skeleton-sm"></span>
+          </div>
+        </div>
+        <div class="forecast-card skeleton-card">
+          <div class="fc-day skeleton skeleton-sm"></div>
+          <div class="fc-icon skeleton skeleton-icon-sm"></div>
+          <div class="fc-temps">
+            <span class="skeleton skeleton-sm"></span>
+            <span class="skeleton skeleton-sm"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Data from <a href="https://open-meteo.com" target="_blank">Open-Meteo</a> &amp; <a href="https://worldtimeapi.org" target="_blank">WorldTimeAPI</a> — CPAD Lab Exercise 3</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

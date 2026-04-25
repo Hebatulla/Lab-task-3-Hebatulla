@@ -2,7 +2,7 @@
 Building WeatherNow gave me experience with both the native Fetch API and jQuery's AJAX methods side by side in a real application. Here is my comparative reflection.
 
 **Syntax Verbosity:**
-The Fetch API with async/await is clean and reads almost like synchronous code. Defining the request, awaiting the response, and awaiting the JSON parse feels natural once you understand the two-step process (await fetch() then await response.json()). jQuery's $.getJSON() is shorter for simple GET requests — one line fires the request — but its true verbosity shows up when you need fine-grained control: you then fall back to the full $.ajax({ type, url, dataType, ... }) syntax, which is noticeably more verbose and config-object-heavy.
+The Fetch API with async/await is clean and reads almost like synchronous code. Defining the request, awaiting the response, and awaiting the JSON parse feels natural once you understand the two-step process.
 
 
 **Promise Chaining Style:**

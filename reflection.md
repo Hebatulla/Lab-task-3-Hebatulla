@@ -7,7 +7,7 @@ The Fetch API with async/await is clean and reads almost like synchronous code. 
 
 
 **Promise Chaining Style:**
-Fetch uses the modern async/await pattern, making multi-step chains (geocode → weather) straightforward to read top-to-bottom without nesting. jQuery uses its own Deferred object, which predates native Promises. The .done(), .fail(), and .always() chaining methods are readable and expressive, but they are a custom API — not standard Promise.then/catch — which means you cannot use await on them without wrapping, and they behave subtly differently from native Promises in error propagation.
+Fetch uses the modern async/await pattern, making multi-step chains (geocode → weather) straightforward to read top-to-bottom without nesting. jQuery uses its own Deferred object, which predates native Promises. The .done(), .fail(), and .always() chaining methods are readable and expressive, but they are a custom API: not standard Promise.then/catch ,which means you cannot use await on them without wrapping, and they behave subtly differently from native Promises in error propagation.
 
 
 **Error Handling**
@@ -15,7 +15,7 @@ Fetch requires explicit HTTP error checking (if (!response.ok)) because it only 
 
 
 **Browser Support**
-jQuery AJAX works in all browsers including very old ones (IE8+) out of the box — that was its original strength. The native Fetch API is supported in all modern browsers (Chrome, Firefox, Safari, Edge) without any polyfill, but requires a polyfill for Internet Explorer. In 2024, this is rarely a concern.
+jQuery AJAX works in all browsers including very old ones (IE8+) out of the box ,that was its original strength. The native Fetch API is supported in all modern browsers (Chrome, Firefox, Safari, Edge) without any polyfill, but requires a polyfill for Internet Explorer. In 2024, this is rarely a concern.
 
 
 **Personal Preference**
